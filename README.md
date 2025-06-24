@@ -19,6 +19,16 @@ bash <(curl -fsSL https://raw.githubusercontent.com/loiclaforet/server-setup/mai
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/loiclaforet/server-setup/main/setup-lynis.sh)
 
+---
+
+## 🧭 Menu interactif
+
+Lance un menu de choix interactif pour exécuter l’un des scripts :
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/loiclaforet/server-setup/main/menu.sh)
+
+
 
 📌 Pré-requis
 Ubuntu Server 22.04 ou 24.04 recommandé
