@@ -36,15 +36,15 @@ echo "==> Actualisation des index APT"
 apt-get update -qq
 
 echo "==> Écriture du fichier 50unattended-upgrades"
-cat > /etc/apt/apt.conf.d/50unattended-upgrades <
+cat > /etc/apt/apt.conf.d/50unattended-upgrades <<EOF
 // -----------------------------------------------------------------------------
 // 50unattended-upgrades — Configuration production
 // -----------------------------------------------------------------------------
 Unattended-Upgrade::Allowed-Origins {
-        "${distro_id}:${distro_codename}";
-        "${distro_id}:${distro_codename}-security";
-        "${distro_id}:${distro_codename}-updates";
-        "Docker:${distro_codename}";
+        "\${distro_id}:\${distro_codename}";
+        "\${distro_id}:\${distro_codename}-security";
+        "\${distro_id}:\${distro_codename}-updates";
+        "Docker:\${distro_codename}";
 };
 Unattended-Upgrade::Package-Blacklist {};
 Unattended-Upgrade::DevRelease "false";
@@ -61,7 +61,7 @@ Unattended-Upgrade::SyslogFacility "daemon";
 EOF
 
 echo "==> Écriture du fichier 20auto-upgrades"
-cat > /etc/apt/apt.conf.d/20auto-upgrades <
+cat > /etc/apt/apt.conf.d/20auto-upgrades <<EOF
 APT::Periodic::Update-Package-Lists "1";
 APT::Periodic::Unattended-Upgrade  "1";
 APT::Periodic::AutocleanInterval   "7";
