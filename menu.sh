@@ -20,10 +20,14 @@ while true; do
   read -rp "Choix [1-4] : " choice
   case $choice in
     1)
+      echo "Configuration du fuseau horaire en Europe/Paris..."
+      timedatectl set-timezone Europe/Paris
+
       echo "Installation des mises à jour automatiques..."
       bash <(curl -fsSL "$BASE_URL/setup-unattended-prod.sh")
+
       echo "Génération du rapport Unattended immédiatement..."
-      unattended-upgrade --dry-run --debug | grep -A2 "Allowed origins are" | mail -s "[UNATTENDED] Rapport immédiat" root
+      unattended-upgrade --dry-run --debug | grep -A2 "Allowed origins are" | mail -s "[UNATTENDED] Rapport immédiat" root || true
 
       echo "Installation de Lynis..."
       bash <(curl -fsSL "$BASE_URL/setup-lynis.sh")
